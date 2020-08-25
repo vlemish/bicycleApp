@@ -1,0 +1,29 @@
+<h2><span>🤑</span> Create New Rent</h2>
+<div class="divParentAdd">
+<div class="divParentAdd">
+    <div class="formEl">
+      <form style="padding-left: 36px;" method="post">
+        <div class="form-row">
+          <div class="col">
+            <label for="bikeName">Bike Name</label>
+            <input type="text"  class="form-control large" id="bikeName" placeholder="Super fast bike" name="bikeName" [(ngModel)]="bicycleName">
+          </div>
+          <div class="col">
+            <label for="bikeType">Bike Type</label>
+            <select [(ngModel)]="bicycleType" name="bikeType"  class="form-control large" id="bikeType" size="1">
+              <option *ngFor="let o of options">
+              {{o.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="rentPrice">Rent Price</label>
+            <input type="number" name="bikePrice"  class="form-control input-sm" id="rentPrice" [(ngModel)]="bicyclePrice"> 
+          </div>
+          <div class="col align-self-end">
+          <button type="submit" class="btn btn-primary btn-add" id="addButton" (click)="addBicycle(bicycleName, bicycleType, bicyclePrice)">Sumbit rent</button>
+        </div> 
+          </div> 
+      </form>
+  </div>
+  </div>

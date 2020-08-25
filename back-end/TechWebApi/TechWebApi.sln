@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechWebApi", "TechWebApi\TechWebApi.csproj", "{1C5D9BEC-98C1-4325-883A-95BA7C5ACDBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C5D9BEC-98C1-4325-883A-95BA7C5ACDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5D9BEC-98C1-4325-883A-95BA7C5ACDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5D9BEC-98C1-4325-883A-95BA7C5ACDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5D9BEC-98C1-4325-883A-95BA7C5ACDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {425F6304-8441-4406-906B-C2F901F97B19}
+	EndGlobalSection
+EndGlobal

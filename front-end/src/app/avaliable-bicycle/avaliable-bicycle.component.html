@@ -1,0 +1,16 @@
+<h2><span>🚲</span> Avaliable bicycles ({{bicycles.length}})</h2>
+<div class="divParentTable">
+<table>
+<tbody>
+  <tr *ngFor="let bicycle of bicycles; let i = index" [attr.id]="bicycle.id | async"> 
+    <td class="tdName" style="padding-left: 36px;">{{bicycle.name | async }}</td>
+      <td class="tdSlash"><span>/</span></td>
+      <td class="tdType">{{bicycle.type | async }}<td>
+        <td class="tdSlash"><span>/</span></td>
+      <td class="tdPrice">{{bicycle.price| currency | async }}</td>
+      <td><button style="float:right" type="submit" class="btn btn-primary btn-rent" id="Rent" (click)="updateRent(bicycle.id, bicycle)">Rent</button></td>
+      <td class="tdButton" style="padding-right:30px"><button style="float:right" type="submit" class="btn btn-danger btn-dlt" id="removeButton" (click)="removeBicycle(bicycle.id)">Delete</button></td>
+    </tr> 
+</tbody>
+</table>
+</div> 
