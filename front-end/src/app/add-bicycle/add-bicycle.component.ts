@@ -6,15 +6,16 @@ import { BicycleService } from '../bicycle.service';
 @Component({
   selector: 'add-bicycle',
   templateUrl: './add-bicycle.component.html',
+  styleUrls: ['./add-bicycle.component.css'],
   providers: [AvaliableBicycleComponent]
 
 })
 
 export class AddBicycleComponent {
 
-  bicycleName : string = "Super";
+  bicycleName : string = "Superfast bicycle";
   bicycleType : string = "Custom";
-  bicyclePrice : number = 223.3;
+  bicyclePrice : number = 29.99;
 
   options = [
     {name : "Custom", value: 0 },
@@ -25,7 +26,8 @@ export class AddBicycleComponent {
 
   constructor(private service : BicycleService){}
   addBicycle(bicycleName,bicycleType,bicyclePrice): void{
-    this.service.createBicycle(new Bicycle( bicycleName, bicycleType, bicyclePrice)).subscribe();
+    this.service.createBicycle(new Bicycle( bicycleName, bicycleType, bicyclePrice, false)).subscribe();
+    window.location.reload();
   }
 
 }

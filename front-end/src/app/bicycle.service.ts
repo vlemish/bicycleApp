@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Bicycle} from './bicycle';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Injectable()
 export class BicycleService{
 
@@ -12,19 +14,18 @@ export class BicycleService{
 
     //TOGET all the bikes from Db(not necessary)
     getBicycles() : Observable<Bicycle[]>{
-        console.log(this.http.get(this.url));
         return this.http.get<Bicycle[]>(this.url);
     }
 
     //TOGET ONLY avaliable to rent bikes
-    getAvaliableBicycles(){
-        console.log(this.http.get<Bicycle[]>(this.url+"/avaliables"));
+    getAvaliableBicycles(): Observable<Bicycle[]>{
+
         return this.http.get<Bicycle[]>(this.url+"/avaliables");
     }
 
     //TOGET ONLY rented bikes
     getUnavaliableBicycles() : Observable<Bicycle[]>{
-        console.log(this.http.get<Bicycle[]>(this.url+"/unavaliables"));
+        
         return this.http.get<Bicycle[]>(this.url+"/unavaliables");
     }
 
@@ -41,8 +42,10 @@ export class BicycleService{
     //TOUPDATE a bike by id
     updateBicycle(id: number, bicycle: Bicycle){
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        
-        return this.http.put(this.url, JSON.stringify(bicycle), {headers: myHeaders});
+        // const body = {
+        //     name: bicycle.name, type : bicycle.type, price: bicycle.price, isRented : bicycle.isRented
+        // };
+        return this.http.put(this.url +"/" + id, JSON.stringify(bicycle), {headers: myHeaders});
     }
 
     //TODELETE a bike from Db

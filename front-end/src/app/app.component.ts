@@ -13,8 +13,9 @@ import { Component } from '@angular/core';
     <div id="AvaliableBicycles">
         <avaliable-bicycle></avaliable-bicycle>
     </div>
-</div>`
+</div>`,
+
 })
 export class AppComponent { 
     
-}
+}  // templateUrl: './rented-bicycle.component.html',
