@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -25,17 +26,33 @@ namespace TechWebApi.Controllers
 
 
         //GET: api/Bicycle/Avaliables
+        //[HttpGet, Route("Avaliables")]
         [HttpGet, Route("Avaliables")]
-        public IEnumerable<Bicycle> GetAvaliablesBicycles() => _repo.GetAvailables();
+        public IEnumerable<object> GetAvaliablesBicycles() => _repo.GetAvailables().
+            Select(b => new 
+            { 
+                id = b.Id, name = b.Name, 
+                type = b.Type, 
+                price = b.Price, 
+                isRented = b.IsRented 
+            });
 
 
         //GET: api/Bicycle/Unavaliables
         [HttpGet, Route("Unavaliables")]
-        public IEnumerable<Bicycle> GetUnavaliablesBicycles() => _repo.GetUnavailables();
+        public IEnumerable<object> GetUnavaliablesBicycles() => _repo.GetUnavailables().
+            Select(b => new
+            {
+                id = b.Id,
+                name = b.Name,
+                type = b.Type,
+                price = b.Price,
+                isRented = b.IsRented
+            });
 
 
         //GET: api/Bicycle/1
-        [HttpGet, Route("{id}", Name ="DisplayRoute")]
+        [HttpGet, Route("{id}", Name = "DisplayRoute")]
         [ResponseType(typeof(Bicycle))]
         public async Task<IHttpActionResult> GetBicycles(int id)
         {
@@ -49,8 +66,7 @@ namespace TechWebApi.Controllers
             return Ok(bicycle);
         }
 
-
-        //POST: /api/Bicycle
+        //POST: /api/Biycle/1
         [HttpPut, Route("{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult UpdateBicycle(int id, Bicycle bicycle)
@@ -69,13 +85,13 @@ namespace TechWebApi.Controllers
             {
                 _repo.Save(bicycle);
             }
-            catch(Exception ex) { throw new Exception("Can't save changes!"); }
+            catch (Exception ex) { throw new Exception("Can't save changes!"); }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
 
-        //POST: /api/Biycle/1
+        //POST: /api/Bicycle
         [HttpPost, Route("")]
         [ResponseType(typeof(Bicycle))]
         public IHttpActionResult CreateBicycle(Bicycle bicycle)
