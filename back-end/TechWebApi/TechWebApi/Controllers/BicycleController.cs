@@ -19,16 +19,20 @@ namespace TechWebApi.Controllers
 
         //GET: api/Bicycle
         [HttpGet, Route("")]
-        public IEnumerable<Bicycle> GetBicycles()
-        {
-            return _repo.GetAll();
-        }
+        public IEnumerable<Object> GetBicycles() => _repo.GetAll().
+            Select(b => new
+            {
+                id = b.Id,
+                name = b.Name,
+                type = b.Type,
+                price = b.Price,
+                isRented = b.IsRented
+            });
 
 
         //GET: api/Bicycle/Avaliables
-        //[HttpGet, Route("Avaliables")]
         [HttpGet, Route("Avaliables")]
-        public IEnumerable<object> GetAvaliablesBicycles() => _repo.GetAvailables().
+        public IEnumerable<Object> GetAvaliablesBicycles() => _repo.GetAvailables().
             Select(b => new 
             { 
                 id = b.Id, name = b.Name, 
@@ -40,7 +44,7 @@ namespace TechWebApi.Controllers
 
         //GET: api/Bicycle/Unavaliables
         [HttpGet, Route("Unavaliables")]
-        public IEnumerable<object> GetUnavaliablesBicycles() => _repo.GetUnavailables().
+        public IEnumerable<Object> GetUnavaliablesBicycles() => _repo.GetUnavailables().
             Select(b => new
             {
                 id = b.Id,
