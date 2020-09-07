@@ -1,33 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { BicycleService } from '../bicycle.service';
 import { Bicycle } from '../bicycle';
+import { RentedBicycleComponent } from '../rented-bicycle/rented-bicycle.component';
 
 @Component({
   selector: 'avaliable-bicycle',
   templateUrl: './avaliable-bicycle.component.html',
   styleUrls: ['./avaliable-bicycle.component.html']
 })
-export class AvaliableBicycleComponent implements OnInit {
+export class AvaliableBicycleComponent implements  OnInit {
 
   count : number = 0;
   
   public bicycles: Bicycle[];
 
-  // remove(i:number){
-  //   for(let i=0;i<this.bicycles.length;++i){
-  //   }
-  // }
+  @ViewChild (RentedBicycleComponent) child:RentedBicycleComponent;
   
-    private loadBicycles() : void{
+  private loadBicycles() : void{
       
          this.service.getAvaliableBicycles().subscribe(data  =>{
-           console.log(data);
-           this.bicycles = data;
-           console.log(this.bicycles);
+           this.count = 0;
+            this.bicycles = data;
          }
 
       );
     }
+
+    onAdded(str: string){
+      this.loadBicycles();
+      
+      console.log(str);
+    }
+
+
 
     ngOnInit(){
       this.loadBicycles();
@@ -38,15 +43,22 @@ export class AvaliableBicycleComponent implements OnInit {
     updateRent(id: number, bicycle: Bicycle){
       console.log(this.bicycles);
       console.log(this.bicycles);
-      // console.log(id);
       bicycle.isRented=true;
-      this.service.updateBicycle(id,bicycle).subscribe();
+      this.service.updateBicycle(id,bicycle).subscribe(response=>{
+        if(response===204){
+          this.loadBicycles();
+          this.child.ngOnInit();
+        }
+      });
 
     }
 
     removeBicycle(id: number){
-      this.service.deleteBicycle(id).subscribe();
-      window.location.reload();
+      this.service.deleteBicycle(id).subscribe(response=>{
+        if(response===200){
+          this.loadBicycles();
+        }
+      });
     }
 
     typeToString(type: number){
