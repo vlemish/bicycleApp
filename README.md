@@ -30,7 +30,7 @@
             <li><b>Delete</b> - deletes the bicycle from page and server</li>
         </ul>
     </p>
-    <h3>Update bicycles state and delete bicycle</h3>
+    <h3>Update bicycles state and deletes bicycle</h3>
     <img src="https://github.com/vlemish/bicycleApp/blob/master/imgs/update.gif" alt="update">
     <p>Rented Bicycles have 1 button that just updating state and moves bicycles to available.</p>
     <img src="https://github.com/vlemish/bicycleApp/blob/master/imgs/delete.gif" alt="delete">
